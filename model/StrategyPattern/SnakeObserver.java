@@ -1,4 +1,4 @@
-package model.ObserverPattern;
+package model.StrategyPattern;
 
 public interface SnakeObserver {
     void hitFood();

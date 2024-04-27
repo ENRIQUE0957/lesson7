@@ -2,9 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-import model.ObserverPattern.SnakeEvent;
-import model.ObserverPattern.SnakeObserver;
-import model.ObserverPattern.Subject;
+import model.StrategyPattern.SnakeEvent;
+import model.StrategyPattern.SnakeObserver;
+import model.StrategyPattern.Subject;
 import view.AppCanvas;
 import view.AppWindow;
 
@@ -16,11 +16,14 @@ public class Snake implements Subject{
     private final int INIT_YLOC = AppWindow.GRID_SIZE * 3;
     private final int INIT_NODES = 6;
     private Direction direction;
+    private int speed;//this wil; control the speed of the snake for new play strategy 
+
 
     private ArrayList<SnakeObserver> observers = new ArrayList<>();
 
     public Snake(){
         init();
+        this.speed = 100;
 
     }
 
@@ -54,6 +57,14 @@ public class Snake implements Subject{
                 head.y += AppWindow.GRID_SIZE;
                 break;
         }
+    }
+    public void speedUp() {
+        if (this.speed > 50) { // Set a lower limit to prevent the game from becoming unplayable
+            this.speed -= 10; // Decrease the delay to speed up the snake
+        }
+    }
+    public int getSpeed() {
+        return this.speed;
     }
 
     public void falling(){

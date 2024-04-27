@@ -1,20 +1,22 @@
 package controller;
-
+import model.Direction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import model.Direction;
 
 public class KeyPressListener implements KeyListener {
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
+  
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        switch (key){
+        System.out.println("Key Pressed: " + KeyEvent.getKeyText(key));
+        changeSnakeDirection(key);
+    }
+
+   
+    private void changeSnakeDirection(int key) {
+        switch (key) {
             case KeyEvent.VK_LEFT:
                 App.model.snake.setDirection(Direction.LEFT);
                 break;
@@ -25,15 +27,18 @@ public class KeyPressListener implements KeyListener {
                 App.model.snake.setDirection(Direction.UP);
                 break;
             case KeyEvent.VK_DOWN:
-            App.model.snake.setDirection(Direction.DOWN);
+                App.model.snake.setDirection(Direction.DOWN);
                 break;
-        
-            }
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Not implemented, but available for future use if needed.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-   
+        // Not implemented, but available for future use if needed.
     }
-    
 }

@@ -3,11 +3,13 @@ package model;
 import java.util.Random;
 
 import controller.App;
+import model.StrategyPattern.NormalPlayStrategy;
+import model.StrategyPattern.PlayStrategy;
 import view.AppCanvas;
 import view.AppWindow;
 
 public class GameModel {
-
+    private PlayStrategy strategy;
     public Snake snake;
     public Food food;
     public String messages;
@@ -16,6 +18,7 @@ public class GameModel {
     public GameModel(){
         snake = new Snake();
         init();
+        this.strategy  = new NormalPlayStrategy();
     }
 
     public void init(){
@@ -23,6 +26,12 @@ public class GameModel {
         score = 0;
         messages = "Click <Start> to Play";
         food = createFood();
+    }
+     public void setStrategy(PlayStrategy strategy) {
+        this.strategy = strategy;
+    }
+    public int getStrategyDelay() {
+        return strategy.getDelay();
     }
     
     public Food createFood(){
